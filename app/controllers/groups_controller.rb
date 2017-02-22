@@ -31,18 +31,12 @@ class GroupsController < ApplicationController
 
   end
 
-  def edit
-    @group = Group.find(params[:id])
 
-    if current_user != @group.user
-      redirect_to root_path, alert: "你没有权限."
-    end
+  def edit
 
   end
 
   def update
-
-    find_group_and_check_permission
 
     if @group.update(group_params)
       redirect_to groups_path, notice: "Update Success"
@@ -52,14 +46,10 @@ class GroupsController < ApplicationController
 
   end
 
+
   def destroy
-
-    find_group_and_check_permission
-
     @group.destroy
-
     redirect_to groups_path, alert: "Group deleted"
-
   end
 
 
